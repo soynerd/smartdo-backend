@@ -28,8 +28,8 @@ app.use('/data', verifyAuth, updateTask);
 app.use('/data', verifyAuth, deleteTask);
 
 
-app.get('/test', verifyAuth, (req, res)=>{
-    res.send({message: "hello from backend/test", data: {mail:"yobro", place:"delhi"}});
+app.get('/', (req, res)=>{
+    res.send({message: "hello from backend", activeStatus: true});
 })
 
 app.listen(port, ()=>{
