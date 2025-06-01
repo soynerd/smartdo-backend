@@ -11,7 +11,7 @@ passport.use(new GoogleStrategy(
   {
     clientID: config.google.clientID,
     clientSecret: config.google.clientSecret,
-    callbackURL: '/auth/google/callback',
+    callbackURL: config.google.callbackURL
   },
   (accessToken, refreshToken, profile, done) => {
     return done(null, profile);
@@ -60,11 +60,11 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: "Strict",
+      sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    res.redirect("http://localhost:5173/");
+    res.redirect(config.frontendUrl);
 
   } catch (error) {
     console.error("Auth :: Google :: error", error);

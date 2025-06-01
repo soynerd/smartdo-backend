@@ -11,7 +11,7 @@ passport.use(
     {
       clientID: config.github.clientID,
       clientSecret: config.github.clientSecret,
-      callbackURL: '/auth/github/callback',
+      callbackURL: config.github.callbackURL,
     },
     (accessToken, refreshToken, profile, done) => {
       return done(null, profile);
@@ -81,7 +81,7 @@ router.get("/github/callback",
         maxAge: 7 * 24 * 60 * 60 * 1000,
       });
 
-      res.redirect("http://localhost:5173/");
+      res.redirect(config.frontendUrl);
     } catch (error) {
       console.error("Auth :: GitHub :: error", error);
       res.status(500).send("Internal server error");
