@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { config } from "./src/config/index.js";
 import {
   logout,
   authStatus,
@@ -16,9 +17,9 @@ import {
 import verifyAuth from "./src/middleware/authToken.js";
 
 const app = express();
-const port = 3000;
+const port = config.port;
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: config.frontendUrl,
   credentials: true,
 };
 
@@ -43,6 +44,6 @@ app.get("/", (req, res) => {
   res.send({ message: "hello from backend", activeStatus: true });
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Server started :-) `);
 });

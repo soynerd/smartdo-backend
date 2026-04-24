@@ -23,6 +23,8 @@ const credentials = {
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: process.env.GITHUB_CALLBACK_URL,
   },
+
+  port: process.env.PORT,
   openAiAPI: process.env.OPENAI_API_KEY,
   baseUrl: process.env.BASE_URL,
   frontendUrl: process.env.FRONTEND_URL,

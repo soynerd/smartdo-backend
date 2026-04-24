@@ -11,7 +11,6 @@ const router = express.Router();
 
 router.post("/openAiResponse", async (req, res) => {
   const { prompt } = req.body;
-  console.log(prompt);
   try {
     const data = await openaiTaskGenerator(prompt);
 
